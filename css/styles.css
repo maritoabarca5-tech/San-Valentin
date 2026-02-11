@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #2b000f, #4b001a, #1a0008);
+    font-family: 'Playfair Display', serif;
+    color: #f5e6d3;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* CONTENEDOR */
+.container {
+    position: relative;
+    z-index: 2;
+    padding-top: 60px;
+}
+
+
+.titulo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3em;
+    margin-bottom: 25px;
+    color: #ffd7a0;
+}
+
+/* IMAGEN */
+.scratch-container {
+    position: relative;
+    width: 360px;
+    margin: auto;
+}
+
+#imagenReal {
+    width: 100%;
+    border-radius: 25px;
+    box-shadow: 0 0 40px rgba(255, 180, 120, 0.6);
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 25px;
+}
+
+/* MENSAJE */
+#mensajeFinal {
+    display: none;
+    margin-top: 35px;
+    animation: aparecer 1.2s ease forwards;
+}
+
+#mensajeFinal h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5em;
+    color: #ffd7a0;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* BOTONES VINTAGE */
+button {
+    padding: 12px 30px;
+    margin: 15px;
+    font-size: 18px;
+    border-radius: 40px;
+    border: 2px solid #ffd7a0;
+    background: transparent;
+    color: #ffd7a0;
+    font-family: 'Playfair Display', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #ffd7a0;
+    color: #4b001a;
+    box-shadow: 0 0 15px rgba(255, 215, 160, 0.8);
+}
+
+/* CORAZONES REALES FLOTANDO */
+.corazon {
+    position: fixed;
+    color: rgba(255, 120, 150, 0.8);
+    font-size: 22px;
+    animation: flotar 8s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+@keyframes flotar {
+    from {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+.corazones {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ===== MODAL ROSA ===== */
+
+#modalRosa {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.contenidoRosa {
+    text-align: center;
+    animation: aparecerRosa 1s ease forwards;
+}
+
+@keyframes aparecerRosa {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ROSA */
+
+.rosa {
+    position: relative;
+    width: 160px;
+    height: 240px;
+    margin: auto;
+}
+
+/* Centro más oscuro y debajo */
+.centro {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #8b0000, #4b0000);
+    border-radius: 50% 50% 50% 50%;
+    top: 50px;
+    left: 50px;
+    z-index: 1; /* debajo de los pétalos */
+    opacity: 0;
+    animation: florecer 1s forwards;
+    animation-delay: 0.3s;
+}
+
+/* Pétalos curvados */
+.petalo {
+    position: absolute;
+    width: 90px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #ff4d6d, #b00030);
+    border-radius: 70% 70% 50% 50%;
+    opacity: 0;
+    transform: scale(0);
+    animation: florecer 1s forwards;
+    z-index: 2; /* encima del centro */
+}
+
+/* Distribución con rotación y curvatura */
+.p1 { top: 20px; left: 35px; transform: rotate(-15deg) skewY(-5deg); animation-delay: 0.6s; }
+.p2 { top: 25px; left: 15px; transform: rotate(-35deg) skewY(-8deg); animation-delay: 0.9s; }
+.p3 { top: 25px; left: 55px; transform: rotate(35deg) skewY(8deg); animation-delay: 1.2s; }
+.p4 { top: 40px; left: 25px; transform: rotate(-55deg) skewY(-10deg); animation-delay: 1.5s; }
+.p5 { top: 40px; left: 45px; transform: rotate(55deg) skewY(10deg); animation-delay: 1.8s; }
+
+/* Tallo */
+.tallo {
+    position: absolute;
+    width: 10px;
+    height: 0;
+    background: linear-gradient(to bottom, #006400, #228b22);
+    top: 110px;
+    left: 75px;
+    animation: crecerTallo 1s forwards;
+    animation-delay: 2.1s;
+    border-radius: 5px;
+    z-index: 0;
+}
+
+/* Hojas */
+.hoja {
+    position: absolute;
+    width: 70px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, #228b22, #004d00);
+    border-radius: 50% 50% 50% 50%;
+    opacity: 0;
+    animation: florecer 1s forwards;
+    z-index: 0;
+}
+
+.h1 { top: 160px; left: 20px; transform: rotate(-30deg); animation-delay: 2.4s; }
+.h2 { top: 160px; left: 80px; transform: rotate(30deg); animation-delay: 2.7s; }
+
+/* Animaciones */
+@keyframes florecer {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes crecerTallo {
+    to {
+        height: 130px;
+    }
+}
+
+
+.mensajeRosa {
+    margin-top: 20px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2em;
+    color: #ffd7a0;
+}
+
+/* Animación de apertura */
+@keyframes abrirPetalo {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg) skewY(0deg);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.05) rotate(var(--rotacion, 0deg)) skewY(var(--curva, 0deg));
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(var(--rotacion, 0deg)) skewY(var(--curva, 0deg));
+    }
+}
+
+/* Animación de latido suave */
+@keyframes latir {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Pétalos */
+.petalo {
+    position: absolute;
+    width: 90px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #ff4d6d, #b00030);
+    border-radius: 70% 70% 50% 50%;
+    opacity: 0;
+    z-index: 2;
+    animation: abrirPetalo 1.2s forwards, latir 4s infinite ease-in-out;
+}
+
+/* Distribución con rotación y curvatura */
+.p1 { top: 20px; left: 35px; --rotacion: -15deg; --curva: -5deg; animation-delay: 0.5s; }
+.p2 { top: 25px; left: 15px; --rotacion: -35deg; --curva: -8deg; animation-delay: 0.9s; }
+.p3 { top: 25px; left: 55px; --rotacion: 35deg; --curva: 8deg; animation-delay: 1.3s; }
+.p4 { top: 40px; left: 25px; --rotacion: -55deg; --curva: -10deg; animation-delay: 1.7s; }
+.p5 { top: 40px; left: 45px; --rotacion: 55deg; --curva: 10deg; animation-delay: 2.1s; }
+
+/* Centro */
+.centro {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background: radial-gradient(circle, #8b0000, #4b0000);
+    border-radius: 50% 50% 50% 50%;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+    opacity: 0;
+    animation: abrirPetalo 1.2s forwards;
+    animation-delay: 0.3s;
+}
+
+/* Tallo y hojas igual que antes */
+
+/* Animación de hojas desplegándose */
+@keyframes abrirHoja {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(var(--rotacion, 0deg));
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.1) rotate(var(--rotacion, 0deg));
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(var(--rotacion, 0deg));
+    }
+}
+
+/* Hojas */
+.hoja {
+    position: absolute;
+    width: 70px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, #228b22, #004d00);
+    border-radius: 50% 50% 50% 50%;
+    opacity: 0;
+    z-index: 0;
+    animation: abrirHoja 1.2s forwards;
+}
+
+.h1 { 
+    top: 160px; 
+    left: 20px; 
+    --rotacion: -30deg; 
+    animation-delay: 2.4s; 
+}
+
+.h2 { 
+    top: 160px; 
+    left: 80px; 
+    --rotacion: 30deg; 
+    animation-delay: 2.7s; 
+}
+
