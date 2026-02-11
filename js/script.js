@@ -24,7 +24,7 @@ canvas.addEventListener("mousedown", () => {
     if (revelado) return;
 
     raspando = true;
-    musica.play();
+    
 
     scratchSound.loop = true;
     scratchSound.currentTime = 0;
